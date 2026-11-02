@@ -46,12 +46,6 @@ def accessible_cov(r):
     return simulate.reduce_to_accessible(simulate.generate_covariance_matrix(r))
 
 
-def observed_cov(r, sigma, measurement_type):
-    """Sigma_obs of eq. (Sobs): V_A + c I_2, c = sigma^2 (+1 for heterodyne)."""
-    c = sigma ** 2 + (1.0 if measurement_type == "heterodyne" else 0.0)
-    return np.asarray(accessible_cov(r)) + c * np.eye(2)
-
-
 def ellipse(cov, n_sigma=2.0, n_pts=200):
     vals, vecs = np.linalg.eigh(np.asarray(cov))
     t = np.linspace(0, 2 * np.pi, n_pts)
@@ -106,7 +100,7 @@ def fig_reduced_state(r=0.5, n=2000):
 def fig_measurement_schemes(rs=(0.25, 0.5, 1.0), n=1000, sigma=0.1):
     """Point clouds y_i for each scheme, with the 2-sigma contour of Sigma_obs and of V_A."""
     schemes = ("joint", "heterodyne")
-    lim = 2.6 * np.sqrt(observed_cov(max(rs), sigma, "heterodyne")[0, 0])
+    lim = 2.6 * np.sqrt(np.asarray(simulate.observed_covariance(max(rs), sigma, "heterodyne"))[0, 0])
     fig, axes = plt.subplots(len(schemes), len(rs), figsize=(6.3, 4.4), sharex=True, sharey=True)
     for row, scheme in enumerate(schemes):
         for col, r in enumerate(rs):
@@ -114,7 +108,7 @@ def fig_measurement_schemes(rs=(0.25, 0.5, 1.0), n=1000, sigma=0.1):
             key = random.fold_in(random.key(SEED), 10 * row + col)
             y = np.asarray(simulate.sample_measurements(accessible_cov(r), n, sigma, scheme, key))
             ax.scatter(y[:, 0], y[:, 1], s=3, alpha=0.35, color=STYLE[scheme]["color"], linewidths=0)
-            e_obs, e_state = ellipse(observed_cov(r, sigma, scheme)), ellipse(accessible_cov(r))
+            e_obs, e_state = ellipse(np.asarray(simulate.observed_covariance(r, sigma, scheme))), ellipse(accessible_cov(r))
             ax.plot(e_obs[:, 0], e_obs[:, 1], color=INK, lw=1.2, label=r"$\Sigma_\mathrm{obs}$ ($2\sigma$)")
             ax.plot(e_state[:, 0], e_state[:, 1], color=INK, lw=1.0, ls="--", label=r"$V_A$ ($2\sigma$)")
             ax.set(xlim=(-lim, lim), ylim=(-lim, lim), aspect="equal")

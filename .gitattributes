@@ -1,0 +1,7 @@
+# Store and check out text files with LF line endings on every OS, so
+# collaborators on Windows and Linux don't produce line-ending-only diffs
+# (notably in .ipynb files).
+* text=auto eol=lf
+
+*.png binary
+*.pdf binary
