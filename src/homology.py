@@ -87,9 +87,9 @@ def main():
     noise_level = 0.1
     measurement_type = 'heterodyne'  # or 'joint'
 
-    rng = np.random.default_rng(seed=42)
+    key = random.key(42)  
 
-    samples = simulate.sample_measurements(V_A, n_samples, noise_level, measurement_type, rng)
+    samples = simulate.sample_measurements(V_A, n_samples, noise_level, measurement_type, key)
     diagrams = compute_persistence_diagrams(samples, maxdim=1)
     plot_betti_curves(samples, diagrams)
 
