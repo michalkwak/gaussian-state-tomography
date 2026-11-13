@@ -1,8 +1,3 @@
-<<<<<<< Updated upstream
-=======
-## Homology with Betti curves
-
->>>>>>> Stashed changes
 import jax
 import jax.numpy as jnp
 from jax import random
