@@ -35,6 +35,26 @@ def reduce_to_accessible(V: jax.Array) -> jax.Array:
     return top_left_block
 
 
+def observed_covariance(r, noise_level, measurement_type) -> jax.Array:
+    """
+    Covariance of the data that sample_measurements produces for squeezing r,
+    eq. (Sobs) of Section 3.1:
+        joint:      V_A(r) + noise_level^2 I_2
+        heterodyne: V_A(r) + (1 + noise_level^2) I_2
+    The vacuum calibration run of sample_calibration is the r = 0 case.
+    Differentiable in r and noise_level, so it can be used directly as the
+    likelihood covariance in a numpyro model.
+    """
+    if measurement_type == 'joint':
+        offset = 0.0
+    elif measurement_type == 'heterodyne':
+        offset = 1.0
+    else:
+        raise ValueError(f"Unknown measurement type: {measurement_type}")
+    V_A = reduce_to_accessible(generate_covariance_matrix(r))
+    return V_A + (offset + noise_level ** 2) * jnp.eye(2)
+
+
 def sample_measurements(V_A, n_samples, noise_level, measurement_type, key):
     """
     Simulates detector outcomes for the one-wedge accessible mode V_A (2x2).

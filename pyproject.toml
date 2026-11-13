@@ -1,0 +1,30 @@
+[project]
+name = "horizon-radiation-tomography"
+version = "0.1.0"
+description = "Simulating and reconstructing simplified Hawking/Unruh radiation through Gaussian quantum-state tomography."
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    # simulation, estimation, figures
+    "jax",
+    "numpy",
+    "matplotlib",
+    # persistent homology
+    "ripser",
+    "teaspoon",
+    # Bayesian inference
+    "numpyro",
+    "arviz<1",  # 1.x removed plot_posterior and changed the plotting API
+    "pandas",
+    # interactive app
+    "streamlit",
+]
+
+[dependency-groups]
+dev = [
+    "ipykernel",  # run the notebooks in VS Code / Jupyter
+    "nbconvert",  # execute notebooks from the command line
+]
+
+[tool.uv]
+package = false  # src/ is a set of scripts, not an installable package

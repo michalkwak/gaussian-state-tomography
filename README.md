@@ -58,16 +58,41 @@ Two detection schemes are modeled:
   rest of the pipeline, since it yields the 2D point cloud the topological
   analysis needs.
 
-## Running the app
+## Setup
 
-Install the requirements into a virtual environment and launch Streamlit
-with that environment's Python (a global `streamlit` command may belong to a
-Python without `jax`):
+Dependencies are managed with [uv](https://docs.astral.sh/uv/). The project
+pins Python 3.12 (`.python-version`) and exact package versions
+(`uv.lock`), so everyone gets the same environment. After installing uv:
 
 ```bash
-python -m venv .venv
+uv sync
+```
+
+This downloads Python 3.12 if needed and creates `.venv` with all
+dependencies, including the Jupyter kernel for the notebooks. In VS Code,
+select `.venv` as the interpreter / notebook kernel.
+
+To add a package, use `uv add <package>` (not `pip install`), then commit
+`pyproject.toml` and `uv.lock`, and refresh `requirements.txt` with
+`uv export --no-hashes --no-dev --format requirements-txt -o requirements.txt`.
+
+Without uv, `requirements.txt` holds the same pinned versions:
+
+```bash
+python -m venv .venv   # Python 3.12
 .venv/Scripts/python -m pip install -r requirements.txt   # macOS/Linux: .venv/bin/python
-.venv/Scripts/python -m streamlit run app/app.py
+```
+
+## Running
+
+```bash
+uv run streamlit run app/app.py     # interactive app
+uv run python src/make_figures.py   # figures for Section 3.1, written to figures/
 ```
 
 `python app/app.py` also works and relaunches itself under Streamlit.
+
+The Bayesian inference notebooks are in `src/`:
+`bayesian_inference.ipynb` (original) and
+`bayesian_inference_two_schemes.ipynb` (updated for the joint + heterodyne
+simulator).
