@@ -50,6 +50,19 @@ def compute_betti_curve(diagram: np.ndarray, grid: np.ndarray) -> np.ndarray:
     return alive.sum(axis=1)
 
 
+def betti_features(diagrams: list, grids: list) -> np.ndarray:
+    """
+    Fixed-length feature vector of one point cloud: its Betti curves
+    beta_0(t), beta_1(t), ... on one grid per homology dimension, concatenated.
+
+    Use the same grids for every dataset so the features are comparable, and
+    do not rescale the point clouds: the information about r is in their
+    overall scale. The curves depend on n_samples (beta_0(0) = n_samples), so
+    only compare datasets of equal size.
+    """
+    return np.concatenate([compute_betti_curve(d, g) for d, g in zip(diagrams, grids)])
+
+
 def plot_betti_curves(samples: jax.Array, diagrams: list, R: float = 2.0, n_grid: int = 500):
     """Plots the point cloud alongside its H0 and H1 Betti curves."""
     samples = jax.device_get(samples)

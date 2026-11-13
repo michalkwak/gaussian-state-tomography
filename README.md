@@ -95,4 +95,19 @@ uv run python src/make_figures.py   # figures for Section 3.1, written to figure
 The Bayesian inference notebooks are in `src/`:
 `bayesian_inference.ipynb` (original) and
 `bayesian_inference_two_schemes.ipynb` (updated for the joint + heterodyne
-simulator).
+simulator). The latter also infers `r` from the Betti curves alone
+(`src/topological_inference.py`: a synthetic likelihood trained on simulated
+datasets) and compares it with the raw-quadrature posterior and the
+Cramér–Rao bound. A full run takes a few minutes, mostly for ripser.
+
+## Code layout
+
+| File | Role |
+| --- | --- |
+| `src/simulate.py` | Two-mode squeezed state, measurement schemes, detector noise, calibration (Section 3.1) |
+| `src/estimate.py`, `src/metrics.py` | Covariance and squeezing estimators, Cramér–Rao bounds |
+| `src/homology.py` | Persistence diagrams and Betti curves (Section 3.2) |
+| `src/topological_inference.py` | Bayesian inference of `r` from Betti curves (synthetic likelihood) |
+| `src/bayesian_inference*.ipynb` | Bayesian inference with numpyro (Section 4) |
+| `src/make_figures.py` | Figures for Section 3.1 |
+| `app/app.py` | Interactive Streamlit demo |

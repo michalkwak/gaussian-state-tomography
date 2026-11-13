@@ -27,21 +27,13 @@ colorama==0.4.6 ; sys_platform == 'win32'
 contourpy==1.4.0
     # via matplotlib
 cycler==0.12.1
-    # via
-    #   matplotlib
-    #   teaspoon
+    # via matplotlib
 cython==3.3.1
     # via ripser
-ddeint==0.3.0
-    # via teaspoon
 deprecated==3.0.1
     # via persim
 fonttools==4.68.0
-    # via
-    #   matplotlib
-    #   teaspoon
-gudhi==3.13.0
-    # via teaspoon
+    # via matplotlib
 h11==0.16.0
     # via uvicorn
 h5netcdf==1.8.2
@@ -52,8 +44,6 @@ idna==3.20
     # via
     #   anyio
     #   requests
-importlib-resources==7.1.0
-    # via teaspoon
 itsdangerous==2.2.0
     # via streamlit
 jax==0.12.0.1
@@ -72,17 +62,12 @@ joblib==1.6.0
     # via
     #   persim
     #   scikit-learn
-    #   teaspoon
 jsonschema==4.26.0
     # via altair
 jsonschema-specifications==2025.9.1
     # via jsonschema
 kiwisolver==1.5.1
-    # via
-    #   matplotlib
-    #   teaspoon
-llvmlite==0.50.0
-    # via numba
+    # via matplotlib
 markupsafe==3.0.4
     # via jinja2
 matplotlib==3.11.2
@@ -90,28 +75,20 @@ matplotlib==3.11.2
     #   arviz
     #   horizon-radiation-tomography
     #   persim
-    #   teaspoon
 ml-dtypes==0.6.0
     # via
     #   jax
     #   jaxlib
-mpmath==1.3.0
-    # via sympy
 multipledispatch==1.0.0
     # via numpyro
 narwhals==2.28.0
     # via
     #   altair
     #   scikit-learn
-networkx==3.7
-    # via teaspoon
-numba==0.68.1
-    # via teaspoon
 numpy==2.5.4
     # via
     #   arviz
     #   contourpy
-    #   ddeint
     #   h5netcdf
     #   h5py
     #   horizon-radiation-tomography
@@ -119,18 +96,14 @@ numpy==2.5.4
     #   jaxlib
     #   matplotlib
     #   ml-dtypes
-    #   numba
     #   numpyro
     #   pandas
     #   persim
-    #   pot
     #   pydeck
-    #   pyentrp
     #   ripser
     #   scikit-learn
     #   scipy
     #   streamlit
-    #   teaspoon
     #   xarray
     #   xarray-einstats
 numpyro==0.22.0
@@ -143,51 +116,34 @@ packaging==26.3
     #   arviz
     #   h5netcdf
     #   matplotlib
-    #   pooch
     #   streamlit
-    #   teaspoon
     #   xarray
 pandas==3.1.0
     # via
     #   arviz
     #   horizon-radiation-tomography
     #   streamlit
-    #   teaspoon
     #   xarray
 persim==0.4.1
-    # via
-    #   ripser
-    #   teaspoon
+    # via ripser
 pillow==13.0.0
     # via
     #   matplotlib
     #   streamlit
-    #   teaspoon
 platformdirs==4.14.3
-    # via
-    #   arviz
-    #   pooch
-pooch==1.9.0
-    # via teaspoon
-pot==0.9.7.post1
-    # via teaspoon
+    # via arviz
 protobuf==7.36.2
     # via streamlit
 pyarrow==26.0.0
     # via streamlit
 pydeck==0.9.3
     # via streamlit
-pyentrp==2.3.0
-    # via teaspoon
 pyparsing==3.0.9
-    # via
-    #   matplotlib
-    #   teaspoon
+    # via matplotlib
 python-dateutil==4.0.0
     # via
     #   matplotlib
     #   pandas
-    #   teaspoon
 python-multipart==0.0.33
     # via streamlit
 referencing==0.37.0
@@ -195,13 +151,9 @@ referencing==0.37.0
     #   jsonschema
     #   jsonschema-specifications
 requests==2.34.2
-    # via
-    #   pooch
-    #   streamlit
+    # via streamlit
 ripser==0.6.15
-    # via
-    #   horizon-radiation-tomography
-    #   teaspoon
+    # via horizon-radiation-tomography
 rpds-py==2026.9.1
     # via
     #   jsonschema
@@ -210,37 +162,23 @@ scikit-learn==1.9.1
     # via
     #   persim
     #   ripser
-    #   teaspoon
 scipy==1.18.1
     # via
     #   arviz
-    #   ddeint
     #   jax
     #   jaxlib
     #   persim
-    #   pot
     #   ripser
     #   scikit-learn
-    #   teaspoon
     #   xarray-einstats
 setuptools==84.2.1
     # via arviz
-six==1.17.0
-    # via teaspoon
-sortedcontainers==2.4.0
-    # via teaspoon
 starlette==1.10.0
     # via streamlit
 streamlit==1.66.1
     # via horizon-radiation-tomography
-sympy==1.14.0
-    # via teaspoon
-teaspoon==1.6.0
-    # via horizon-radiation-tomography
 threadpoolctl==3.7.0
-    # via
-    #   scikit-learn
-    #   teaspoon
+    # via scikit-learn
 tqdm==4.70.1
     # via numpyro
 typing-extensions==4.16.0
